@@ -1,18 +1,19 @@
-'''1. Написать функцию, реализующую вывод таблицы умножения размерностью AｘB. Первый и второй множитель
- должны задаваться в виде аргументов функции. Значения каждой строки таблицы должны быть представлены списком,
-который формируется в цикле. После этого осуществляется вызов внешней lambda-функции, которая формирует на
-основе списка строку. Полученная строка выводится в главной функции.
-Элементы строки (элементы таблицы умножения) должны разделяться табуляцией.'''
-def multipl_table(a, b):
-    for i in range(b + 1):
-        line = []
-        for j in range(a + 1):
-            if j == 0:
-                line.append(i)
-            elif i == 0:
-                line.append(j)
-            else:
-                line.append(i * j)
-        print('\t'.join([str(i) for i in line]))
+'''1. Проверить механизм наследования в Python. Для этого создать два класса.
+Первый — родительский (ItemDiscount), должен содержать статическую информацию о товаре:
+название и цену. Второй — дочерний (ItemDiscountReport), должен содержать функцию (get_parent_data),
+отвечающую за отображение информации о товаре в одной строке. Проверить работу программы,
+создав экземпляр (объект) родительского класса.'''
+class ItemDiscount:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
 
-multipl_table(5, 2)
+
+class ItemDiscountReport(ItemDiscount):
+    def get_parent_data(self):
+        print(self.name, self.price)
+
+
+child = ItemDiscountReport('apple', 15)
+print(child.get_parent_data())
+

@@ -1,25 +1,15 @@
-'''2. Дополнить следующую функцию недостающим кодом:
-def print_directory_contents(sPath):
-Функция принимает имя каталога и распечатывает его содержимое
-в виде «путь и имя файла», а также любые другие
-файлы во вложенных каталогах.
-
-Эта функция подобна os.walk. Использовать функцию os.walk
-нельзя. Данная задача показывает ваше умение работать с
-вложенными структурами.
-'''
-import os
+'''2. Инкапсулировать оба параметра (название и цену) товара родительского класса. Убедиться, что при сохранении
+текущей логики работы программы будет сгенерирована ошибка выполнения.'''
+class ItemDiscount:
+    def __init__(self, name, price):
+        self.__name = name
+        self.__price = price
 
 
-def print_directory_contents(sPath):
-    dir_lst = os.listdir(sPath)
+class ItemDiscountReport(ItemDiscount):
+    def get_parent_data(self):
+        print(self.__name, self.__price)
 
-    for item in dir_lst:
 
-        f_Path = os.path.join(sPath, item)
-        if os.path.isfile(f_Path):
-            print(item)
-        if os.path.isdir(f_Path):
-            print_directory_contents(f_Path)
-
-print_directory_contents('C:\\Users\\marin\\GB')
+child = ItemDiscountReport('apple', 15)
+print(child.get_parent_data())

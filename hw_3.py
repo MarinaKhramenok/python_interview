@@ -1,18 +1,19 @@
-'''3. Разработать генератор случайных чисел. В функцию передавать начальное и конечное число генерации
-(нуль необходимо исключить). Заполнить этими данными список и словарь. Ключи словаря должны создаваться
-по шаблону: “elem_<номер_элемента>”. Вывести содержимое созданных списка и словаря.'''
-import random
+'''3. Усовершенствовать родительский класс таким образом, чтобы получить доступ к защищенным переменным.
+Результат выполнения заданий 1 и 2 должен быть идентичным.'''
+class ItemDiscount:
+    def __init__(self, name, price):
+        self.__name = name
+        self.__price = price
 
 
-def generator(n1, n2):
-    if n1!=0 and n2!=0:
-        gen_lst =[]
-        gen_dic = {}
-        for elem in range(5):
-            gen = random.randint(n1, n2)
-            gen_lst.append(gen)
-            gen_dic.update({'elem_{}'.format(elem+1): gen})
-    return (gen_lst, gen_dic)
+class ItemDiscountReport(ItemDiscount):
+    def __init__(self, name, price):
+        self.__name = name
+        self.__price = price
+
+    def get_parent_data(self):
+        print(self.__name, self.__price)
 
 
-print(generator(5, 10))
+child = ItemDiscountReport('apple', 15)
+print(child.get_parent_data())
